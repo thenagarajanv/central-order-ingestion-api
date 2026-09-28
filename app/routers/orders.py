@@ -3,46 +3,29 @@ from sqlalchemy.orm import Session
 from typing import Any
 from app.models import Order
 from app.database import get_db
-from app.normalizer import normalize_order
+from app.kafka_producer import publish_order
 
 router = APIRouter()
 
 # to create a order
 @router.post("/webhooks/orders", tags=["Orders"])
-def createOrders(order: dict[str, Any], db: Session = Depends(get_db)):
+def createOrders(order: dict[str, Any]):
+
     provider = order.get("provider")
+
     if provider not in ["uber", "doordash", "swiggy"]:
         raise HTTPException(
             status_code=400,
             detail="Unsupported provider"
         )
 
-    normalized_order = normalize_order(
-        order,
-        provider
-    )
-
-    new_order = Order(
-        provider=normalized_order["provider"],
-        external_order_id=normalized_order["external_order_id"],
-        status=normalized_order["status"],
-        customer=normalized_order.get("customer"),
-        items=normalized_order.get("items"),
-        location=normalized_order.get("location"),
-        currency=normalized_order.get("currency"),
-        total_amount=normalized_order.get("total_amount"),
-        raw_payload=normalized_order.get("raw_payload")
-    )
-
-    db.add(new_order)
-    db.commit()
-    db.refresh(new_order)
+    publish_order(order)
 
     return {
-        "message": "Order stored successfully",
-        "order_id": new_order.id
+        "message": "Order accepted",
+        "provider": provider
     }
-
+    
 # to get orders by provider
 @router.get("/get-orders/{provider}", tags=["Orders"])
 def getOrdersByProvider(

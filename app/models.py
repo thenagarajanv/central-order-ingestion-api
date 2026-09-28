@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Text, Numeric, DateTime
+from sqlalchemy import Column, Integer, Text, Numeric, DateTime, UniqueConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 from app.database import Base
 
@@ -17,3 +17,11 @@ class Order(Base):
     total_amount = Column(Numeric)
     created_at = Column(DateTime)
     raw_payload = Column(JSONB)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "provider",
+            "external_order_id",
+            name="uq_provider_external_order"
+        ),
+    )
