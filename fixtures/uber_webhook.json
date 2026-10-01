@@ -1,0 +1,11 @@
+{
+  "event_type": "orders.notification",
+  "event_id": "c4d2261e-2779-4eb6-beb0-cb41235c751e",
+  "event_time": 1427343990,
+  "meta": {
+    "resource_id": "153dd7f1-339d-4619-940c-418943c14636",
+    "status": "pos",
+    "user_id": "78672535-7170-43f1-b939-2a9010e979a4"
+  },
+  "resource_href": "https://api.uber.com/v2/eats/order/153dd7f1-339d-4619-940c-418943c14636"
+}

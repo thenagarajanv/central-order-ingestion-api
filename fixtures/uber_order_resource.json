@@ -1,0 +1,48 @@
+{
+  "id": "153dd7f1-339d-4619-940c-418943c14636",
+  "display_id": "89CC",
+  "external_reference_id": "pos-123",
+  "current_state": "CREATED",
+  "type": "DELIVERY",
+  "brand": "uber_eats",
+  "store": {
+    "id": "store-id",
+    "name": "My Store"
+  },
+  "eater": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone": "+1234567890",
+    "phone_code": "1234"
+  },
+  "cart": {
+    "items": [
+      {
+        "id": "item-1",
+        "title": "Burger",
+        "quantity": 2,
+        "price": {
+          "unit_price": {
+            "amount": 1000,
+            "currency_code": "USD",
+            "formatted_amount": "$10.00"
+          },
+          "total_price": {
+            "amount": 2000,
+            "currency_code": "USD",
+            "formatted_amount": "$20.00"
+          }
+        }
+      }
+    ]
+  },
+  "payment": {
+    "charges": {
+      "total": {
+        "amount": 2000,
+        "currency_code": "USD",
+        "formatted_amount": "$20.00"
+      }
+    }
+  }
+}
