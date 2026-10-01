@@ -1,0 +1,29 @@
+{
+  "event": {
+    "type": "OrderCreate",
+    "status": "NEW"
+  },
+  "order": {
+    "id": "c1f7ab21-825d-4f10-9b37-2342502804b4",
+    "status": "NEW",
+    "consumer": {
+      "first_name": "Jane",
+      "last_name": "Smith"
+    },
+    "subtotal": 1500,
+    "tax": 150,
+    "currency": "USD",
+    "categories": [
+      {
+        "items": [
+          {
+            "id": "item-2",
+            "name": "Pizza",
+            "quantity": 1,
+            "price": 1500
+          }
+        ]
+      }
+    ]
+  }
+}
